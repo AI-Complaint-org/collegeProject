@@ -7,6 +7,18 @@
 
 echo "Starting backend containers..."
 
+# Check if .env file exists, if not create a basic one
+if [ ! -f .env ]; then
+    echo "Creating basic .env file..."
+    cat > .env << EOF
+JWT_SECRET=college-project-jwt-secret-key-2024-secure
+FLASK_ENV=production
+FLASK_DEBUG=False
+API_BASE_URL=http://localhost:5001
+AI_API_BASE_URL=http://localhost:5002
+EOF
+fi
+
 # Backend 1 (complaint-backend) - Port 5001
 echo "Starting complaint-backend on port 5001..."
 docker run -d \

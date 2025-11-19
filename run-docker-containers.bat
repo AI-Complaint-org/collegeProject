@@ -6,6 +6,18 @@ REM docker build -t sbackend-ai ./sbackend
 
 echo Starting backend containers...
 
+REM Check if .env file exists, if not create a basic one
+if not exist .env (
+    echo Creating basic .env file...
+    (
+        echo JWT_SECRET=college-project-jwt-secret-key-2024-secure
+        echo FLASK_ENV=production
+        echo FLASK_DEBUG=False
+        echo API_BASE_URL=http://localhost:5001
+        echo AI_API_BASE_URL=http://localhost:5002
+    ) > .env
+)
+
 REM Backend 1 (complaint-backend) - Port 5001
 echo Starting complaint-backend on port 5001...
 docker run -d --name complaint-backend -p 5001:5001 -v %USERPROFILE%\collegeProject\sbackend\camplaint-analyzer\models:/app/sbackend/camplaint-analyzer/models --env-file .env complaint-backend
