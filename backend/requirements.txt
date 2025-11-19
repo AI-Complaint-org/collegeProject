@@ -4,7 +4,8 @@ pymongo
 Werkzeug
 PyJWT
 joblib
-scikit-learn
+scikit-learn==1.7.2
 nltk
 pandas
 numpy
+gunicorn
