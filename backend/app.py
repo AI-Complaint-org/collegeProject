@@ -13,7 +13,7 @@ from pathlib import Path
 import json
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/api/*": {"origins": "https://main.d35b0fovv8ctha.amplifyapp.com"}})
 
 # MongoDB Configuration
 # MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')

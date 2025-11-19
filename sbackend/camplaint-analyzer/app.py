@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/api/*": {"origins": "https://main.d35b0fovv8ctha.amplifyapp.com"}})
 # Ensure the path to the complaints data file is set correctly
 DATA_DIR = Path(__file__).parent / 'data'
 COMPLAINTS_FILE = DATA_DIR / 'complaints.json'

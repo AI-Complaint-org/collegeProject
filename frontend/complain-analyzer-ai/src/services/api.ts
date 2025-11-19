@@ -39,8 +39,8 @@ interface RegisterUserData {
 }
 
 // Use the environment variable if it exists, otherwise use direct connection
-// IMPORTANT: Use full URL (http://localhost:5001) to bypass Vite proxy and avoid /api/api doubling
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+// IMPORTANT: Use full URL (http://13.204.77.196:5001) to bypass Vite proxy and avoid /api/api doubling
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://13.204.77.196:5001';
 
 console.log('API Base URL:', API_BASE_URL);
 console.log('Environment variables:', {
@@ -134,15 +134,15 @@ api.interceptors.response.use(
       });
 
       // Create a more helpful error message
-      const backendUrl = fullUrl || error.config?.baseURL || 'http://localhost:5001';
+      const backendUrl = fullUrl || error.config?.baseURL || 'http://13.204.77.196:5001';
       const networkError = new Error(
         `Network Error: Unable to connect to the backend server.\n\n` +
         `Attempted URL: ${fullUrl}\n\n` +
         `Please ensure:\n` +
         `1. Backend is running: cd backend && python app.py\n` +
-        `2. Backend is accessible at: http://localhost:5001/api/health\n` +
+        `2. Backend is accessible at: http://13.204.77.196:5001/api/health\n` +
         `3. Check browser console for CORS errors\n` +
-        `4. Try opening http://localhost:5001/api/health in your browser`
+        `4. Try opening http://13.204.77.196:5001/api/health in your browser`
       );
       (networkError as any).isNetworkError = true;
       (networkError as any).code = error.code;
@@ -191,8 +191,8 @@ export const complaintService = {
       // Re-throw with more context
       if (error.isNetworkError || error.code === 'ECONNREFUSED' || error.message?.includes('Network Error')) {
         const errorMsg = !API_BASE_URL
-          ? 'Network Error: Unable to connect via proxy. Please ensure:\n1. Backend is running on http://localhost:5001\n2. Frontend dev server has been restarted after adding proxy config'
-          : 'Network Error: Unable to connect to the backend server. Please ensure the backend is running on http://localhost:5001';
+          ? 'Network Error: Unable to connect via proxy. Please ensure:\n1. Backend is running on http://13.204.77.196:5001\n2. Frontend dev server has been restarted after adding proxy config'
+          : 'Network Error: Unable to connect to the backend server. Please ensure the backend is running on http://13.204.77.196:5001';
         throw new Error(errorMsg);
       }
       throw error;
@@ -246,8 +246,8 @@ export const complaintService = {
 // Health check function to test backend connectivity
 export const checkBackendHealth = async (): Promise<boolean> => {
   // Use direct absolute URL to bypass Vite proxy and avoid /api/api doubling
-  // Always use http://localhost:5001/api/health directly
-  const healthUrl = 'http://localhost:5001/api/health';
+  // Always use http://13.204.77.196:5001/api/health directly
+  const healthUrl = 'http://13.204.77.196:5001/api/health';
 
   console.log('Checking backend health at:', healthUrl);
   console.log('Using direct connection (bypassing Vite proxy)');
